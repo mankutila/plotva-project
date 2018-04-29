@@ -11,7 +11,6 @@ import api from './api';
 import './index.css';
 
 import { registerSocketEventListeners } from './registerSocketEventListeners';
-// import registerServiceWorker from './registerServiceWorker';
 import regSw from './reg-sw';
 
 // Example of usage API

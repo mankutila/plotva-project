@@ -1,12 +1,11 @@
 const {createServer} = require('./src/server/server');
-
 const {
     MONGO_USER = '',
     MONGO_PASSWORD = '',
     MONGO_LOCAL = 'false',
-    MONGO_DATABASE = 'yandex-shri',
-    MONGO_HOST = 'ds215759.mlab.com',
-    MONGO_PORT = 15759,
+    MONGO_DATABASE = 'plotva',
+    MONGO_HOST = 'ds163119.mlab.com',
+    MONGO_PORT = 63119,
     SERVER_HOST = 'localhost',
     SERVER_PORT = 3001
 } = process.env;

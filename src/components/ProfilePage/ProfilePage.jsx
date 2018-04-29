@@ -6,11 +6,14 @@ import { connect } from 'react-redux';
 import './ProfilePage.css';
 
 class ProfilePageComponent extends Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.user.isFirstLogin && !prevState.edit) {
-      return { edit: true };
+  componentDidMount() {
+    if (this.props.user.isFirstLogin && !this.state.edit) {
+      this.setState(prevState => {
+        return {
+          edit: true
+        }
+      })
     }
-    return null;
   }
 
   state = {
