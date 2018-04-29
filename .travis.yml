@@ -15,5 +15,6 @@ deploy:
   api_key: $HEROKU_API
   skip_cleanup: true
   app: plotva-chat
+  on: production
 after_deploy:
 - echo "Deployment complete"
