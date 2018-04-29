@@ -8,3 +8,12 @@ install:
 script:
 - yarn lint
 - yarn test
+before_deploy:
+- echo "Initializing deployment..."
+deploy:
+  provider: heroku
+  api_key: $HEROKU_API
+  skip_cleanup: true
+  app: plotva-chat
+after_deploy:
+- echo "Deployment complete"

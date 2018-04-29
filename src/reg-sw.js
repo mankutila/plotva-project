@@ -1,8 +1,6 @@
-'use strict';
-
 function regSw() {
   const applicationServerPublicKey =
-    'BMHNptnTN5tE7s6qv6rMjyGY-mI2e0lkv3DT2Vc' + 'LqNsbPH5VH8ygM6lh35lhvwJh7XU2u5vLJDGQVGhUoRnenwk';
+    'BMHNptnTN5tE7s6qv6rMjyGY-mI2e0lkv3DT2VcLqNsbPH5VH8ygM6lh35lhvwJh7XU2u5vLJDGQVGhUoRnenwk';
 
   let isSubscribed = false;
   let swRegistration = null;
