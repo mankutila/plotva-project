@@ -1,64 +1,18 @@
 .icon {
   display: inline-block;
   background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
+  background-position: center;
+  background-size: contain;
 }
 
-.icon_message-sent,
-.icon_message-read {
-  color: #19c700;
-  width: 14px;
-  height: 14px;
-}
-
-.icon_message-sent {
-  background-image: url(./img/sent.svg);
-}
-
-.icon_message-read {
-  background-image: url(./img/read.svg);
-}
-
-.icon_header-add {
-  width: 20px;
-  height: 20px;
-  background-image: url(./img/plus.svg);
-}
-
-.icon_header-write {
-  width: 20px;
-  height: 20px;
-  background-image: url(./img/write.svg);
-  margin-bottom: 5px;
-}
-
-.icon_footer-chats {
+.icon--menu {
   width: 30px;
-  height: 26px;
-  background-image: url(./img/chats.svg);
+  height: 30px;
+  background-image: url(./img/menu.svg);
 }
 
-.icon_footer-contacts {
-  width: 26px;
-  height: 26px;
-  background-image: url(./img/contacts.svg);
-}
-
-.icon_footer-settings {
-  width: 26px;
-  height: 26px;
-  background-image: url(./img/settings.svg);
-}
-
-.icon_header-back {
-  width: 12px;
-  height: 21px;
-  background-image: url(./img/back.svg);
-}
-
-.icon_file {
-  width: 18px;
-  height: 18px;
-  background-image: url(./img/attachment.svg);
+.icon--add {
+  width: 25px;
+  height: 25px;
+  background-image: url(./img/plus.svg);
 }

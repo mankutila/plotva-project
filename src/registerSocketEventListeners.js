@@ -1,8 +1,8 @@
 import api from './api';
-import { appendMessages } from './store/actions/messagesActions';
+// import { appendMessages } from './store/actions/messagesActions';
 
 export const registerSocketEventListeners = async store => {
-  await api.onMessage(result => {
+  /*await api.onMessage(result => {
     const message = [
       {
         id: result._id,
@@ -23,5 +23,5 @@ export const registerSocketEventListeners = async store => {
         messages: message,
       }),
     );
-  });
+  });*/
 };
