@@ -1,0 +1,13 @@
+.bm-item-list {
+  background-color: #fff;
+  padding: 50px 20px 20px;
+  font-size: 18px;
+}
+
+.menu-item {
+  color: #333;
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 1px solid #eaeaea;
+  padding: 20px 0;
+}
