@@ -3,6 +3,7 @@ import api from '../../api';
 
 import './ChatItem.css';
 import { GroupMembers } from '../GroupMembers/GroupMembers'
+import { Avatar } from '../Avatar/Avatar'
 
 export class ChatItem extends Component {
   constructor() {
@@ -43,11 +44,7 @@ export class ChatItem extends Component {
           <React.Fragment>
             <div className="chat__name">{name}</div>
             <div className="chat__left">
-              <div className="avatar avatar--online avatar--sm">
-                <div className="avatar__img">
-                  <img src="http://via.placeholder.com/350x150" alt="name"/>
-                </div>
-              </div>
+              <Avatar size="sm" />
             </div>
             <div className="chat__right">
               <div className="chat__msg">{message}</div>
@@ -61,11 +58,7 @@ export class ChatItem extends Component {
         {!group && (
           <React.Fragment>
             <div className="chat__left">
-              <div className={`avatar `}>
-                <div className="avatar__img">
-                  <img src="http://via.placeholder.com/350x150" alt="name"/>
-                </div>
-              </div>
+              <Avatar size="sm" />
             </div>
             <div className="chat__right">
               <div className="chat__name">{name}</div>

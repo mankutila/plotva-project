@@ -1,0 +1,10 @@
+.contact {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  font-weight: 700;
+}
+
+.contact .avatar {
+  margin-right: 10px;
+}

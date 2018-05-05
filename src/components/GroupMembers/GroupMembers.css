@@ -1,0 +1,12 @@
+.group-members {
+  display: flex;
+  margin: 20px 0 0;
+}
+
+.group-members .avatar {
+  margin-right: 15px;
+}
+
+.group-members .avatar:last-child {
+  margin-right: 0;
+}
