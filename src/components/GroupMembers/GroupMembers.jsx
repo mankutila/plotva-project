@@ -19,16 +19,23 @@ export class GroupMembers extends Component {
   }
 
   render() {
+    let plus = false, count = 0;
+    if (this.state.users > 6) {
+      plus = true;
+      count = this.state.users - 6;
+    }
     return (
       <div className="group-members">
-        {
-          this.state.users.map((user, index) => {
+        { this.state.users.slice(0, 6).map((user, index) => {
             return <Avatar key={index} size="md" user={user} />
           })
         }
-        <div className="avatar avatar--md">
-          <div className="avatar__img">5+</div>
-        </div>
+        { plus && (
+            <div className="avatar avatar--md">
+              <div className="avatar__img">{count}+</div>
+            </div>
+          )
+        }
       </div>
     )
   }
