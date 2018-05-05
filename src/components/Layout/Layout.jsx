@@ -10,7 +10,7 @@ export function Layout(props) {
     <React.Fragment>
       <MenuComponent />
       <Header />
-      <Body />
+      <Body content={props.body} />
     </ React.Fragment>
   )
 }

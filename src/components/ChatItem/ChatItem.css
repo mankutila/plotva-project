@@ -1,0 +1,50 @@
+.chat__right {
+  width: calc(100% - 75px);
+  padding-right: 45px;
+}
+
+.chat__name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #34465c;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+
+.chat__time {
+  font-size: 11px;
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+
+.chat {
+  display: flex;
+  border-bottom: 1px solid #eaeaea;
+  padding: 20px 0;
+  color: #7D8A96;
+  position: relative;
+}
+
+.chat__left {
+  flex: 0 0 auto;
+  margin-right: 20px;
+}
+
+.chat--group {
+  flex-wrap: wrap;
+}
+
+.chat--group .chat__name {
+  width: 100%;
+}
+
+.chat--group .chat__right {
+  flex: 0 0 80%;
+}
+
+.chat--group .chat__name {
+  margin-bottom: 20px;
+}

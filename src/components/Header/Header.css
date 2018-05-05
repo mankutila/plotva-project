@@ -1,4 +1,8 @@
 .header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   height: 50px;
   display: flex;
   align-items: center;
@@ -6,6 +10,7 @@
   color: #fff;
   font-weight: 300;
   padding: 0 10px;
+  transform: translate3d(0, 0, 0);
 }
 
 .header__left, .header__right {

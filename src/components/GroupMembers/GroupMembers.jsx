@@ -1,54 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Avatar } from '../Avatar/Avatar'
+import api from '../../api';
 
 import './GroupMembers.css';
 
-export function GroupMembers(props) {
-  const { avatars } = props;
+export class GroupMembers extends Component {
+  state = {
+    users: []
+  }
 
-  return (
-    <div className="group-members">
-      {
-        avatars.map((avatar) => {
-          return (
-            <div className="avatar avatar--online avatar--md">
-              <div className="avatar__img">
-                <img src="http://via.placeholder.com/350x150" alt="name"/>
-              </div>
-            </div>
-          )
-        })
-      }
+  componentDidMount() {
+    const users = this.props.members.map(async (id) => { return await api.getUser(id); });
+    Promise.all(users).then((completed) => {
+      this.setState({
+        users: completed
+      })
+    });
+  }
 
-      <div className="avatar avatar--online avatar--md">
-        <div className="avatar__img">
-          <img src="http://via.placeholder.com/350x150" alt="name"/>
+  render() {
+    return (
+      <div className="group-members">
+        {
+          this.state.users.map((user, index) => {
+            return <Avatar key={index} size="md" user={user} />
+          })
+        }
+        <div className="avatar avatar--md">
+          <div className="avatar__img">5+</div>
         </div>
       </div>
-      <div className="avatar avatar--online avatar--md">
-        <div className="avatar__img">
-          <img src="http://via.placeholder.com/350x150" alt="name"/>
-        </div>
-      </div>
-      <div className="avatar avatar--online avatar--md">
-        <div className="avatar__img">
-          <img src="http://via.placeholder.com/350x150" alt="name"/>
-        </div>
-      </div>
-      <div className="avatar avatar--online avatar--md">
-        <div className="avatar__img">
-          <img src="http://via.placeholder.com/350x150" alt="name"/>
-        </div>
-      </div>
-      <div className="avatar avatar--online avatar--md">
-        <div className="avatar__img">
-          <img src="http://via.placeholder.com/350x150" alt="name"/>
-        </div>
-      </div>
-      <div className="avatar avatar--md">
-        <div className="avatar__img">5+</div>
-      </div>
-    </div>
-
-  )
-
+    )
+  }
 }

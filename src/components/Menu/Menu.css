@@ -1,6 +1,6 @@
 .bm-item-list {
   background-color: #fff;
-  padding: 50px 20px 20px;
+  padding: 20px;
   font-size: 18px;
 }
 
@@ -10,4 +10,29 @@
   font-weight: 700;
   border-bottom: 1px solid #eaeaea;
   padding: 20px 0;
+}
+
+.bm-burger-button {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  top: 10px;
+  left: 10px;
+  opacity: 0;
+}
+
+.bm-burger-bars {
+  background: #fff;
+}
+
+.profile {
+  display: flex!important;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.profile .avatar {
+  margin-right: 15px;
+  flex: 0 0 auto;
 }
