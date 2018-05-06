@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { slide as Menu } from 'react-burger-menu';
+import { Link } from 'react-router-dom';
 
 import './Menu.css';
 
@@ -15,9 +16,9 @@ export class MenuComponent extends Component {
             </div>
             <div>Мария Передрий</div>
         </div>
-        <a id="home" className="menu-item" href="/">Чаты</a>
-        <a id="about" className="menu-item" href="/">Контакты</a>
-        <a id="contact" className="menu-item" href="/">Настройки</a>
+        <Link to="/chats" className="menu-item" href="/">Чаты</Link>
+        <Link to="/contacts" className="menu-item" href="/">Контакты</Link>
+        <a className="menu-item" href="/">Настройки</a>
       </Menu>
     );
   }

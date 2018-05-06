@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import api from '../../api';
-
-import './ContactsPage.css';
-import { ChatItem } from '../ChatItem/ChatItem'
 import { Avatar } from '../Avatar/Avatar'
+import api from '../../api';
+import './ContactsPage.css';
 
 export class ContactsPage extends Component {
   state = {
@@ -42,8 +40,5 @@ export class ContactsPage extends Component {
         </div>
       )
     });
-
-    // const rooms = this.state.rooms.items;
-    // return rooms ? rooms.map((room, index) => <ChatItem key={index} {...room} />) : '';
   }
 }

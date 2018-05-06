@@ -11,6 +11,7 @@
   font-weight: 300;
   padding: 0 10px;
   transform: translate3d(0, 0, 0);
+  z-index: 100;
 }
 
 .header__left, .header__right {

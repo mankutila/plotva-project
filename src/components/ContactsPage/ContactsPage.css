@@ -1,8 +1,9 @@
 .contact {
   display: flex;
   align-items: center;
-  margin: 15px 0;
+  padding: 15px 0;
   font-weight: 700;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .contact .avatar {
