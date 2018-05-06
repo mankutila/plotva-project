@@ -23,7 +23,7 @@ export class MessageComponent extends Component {
     const { user, userId, created_at, message } = this.props;
     const time = new Date(created_at);
     const formattedTime = time ? `${time.getHours()}:${time.getMinutes()}` : '';
-    const isMine = user._id === userId;
+    const isMine = (user && user._id) === userId;
     return (
       <div className={`message ${isMine ? 'message--my' : ''}`}>
         <div className="message__left">

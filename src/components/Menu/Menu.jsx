@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { Link } from 'react-router-dom';
+import {withRouter} from 'react-router-dom'
 
 import './Menu.css';
 
-export class MenuComponent extends Component {
+export class MenuComp extends Component {
   render () {
     return (
       <Menu width={280}>
@@ -24,3 +25,4 @@ export class MenuComponent extends Component {
   }
 }
 
+export const MenuComponent = withRouter(MenuComp);

@@ -61,11 +61,11 @@ await api.onMessage((result) => {
   }
 
   // Create room
-  try {
-    console.log('New room created', await api.createRoom({name: 'Test'}));
-  } catch (err) {
-    console.log(err.message);
-  }
+  // try {
+  //   console.log('New room created', await api.createRoom({name: 'Test'}));
+  // } catch (err) {
+  //   console.log(err.message);
+  // }
 
   // Get list of all rooms
   let rooms = await api.getRooms();
@@ -74,23 +74,23 @@ await api.onMessage((result) => {
   console.log('Get room info', await api.getRoom(rooms.items[0]._id));
 
   // Try to join to first room in list
-  console.log('Join current user to room', await api.currentUserJoinRoom(rooms.items[0]._id));
+  // console.log('Join current user to room', await api.currentUserJoinRoom(rooms.items[0]._id));
 
   // Try to join to first room in list
   //
-  console.log('Join some user to room', await api.userJoinRoom(users.items[0]._id, rooms.items[0]._id));
+  // console.log('Join some user to room', await api.userJoinRoom(users.items[0]._id, rooms.items[0]._id));
 
   // Get current user list of rooms
   console.log('Current user rooms: ', await api.getCurrentUserRooms());
 
   // Send message to room
-  console.log('Send message', await api.sendMessage(rooms.items[0]._id, `Test message ${Date.now()}`));
+  // console.log('Send message', await api.sendMessage(rooms.items[0]._id, `Test message ${Date.now()}`));
 
   // Send message to room
   console.log('Room messages', await api.getRoomMessages(rooms.items[0]._id));
 
   // Leave room
-  console.log('Leave current user to room', await api.currentUserLeaveRoom(rooms.items[0]._id));
+  // console.log('Leave current user to room', await api.currentUserLeaveRoom(rooms.items[0]._id));
 
   console.log(api);
 })();
@@ -102,7 +102,7 @@ await api.onMessage((result) => {
     store.dispatch(setUser(user));
   }
 
-  registerSocketEventListeners(store);
+
 
 
 })();*/
@@ -115,4 +115,5 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('root'),
 );
+registerSocketEventListeners(store);
 regSw();
