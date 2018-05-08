@@ -11,7 +11,7 @@ export class MessageComponent extends Component {
   }
   async componentDidMount() {
     const { user, userId } = this.props;
-    if (user._id !== userId) {
+    if ((user && user._id) !== userId) {
       const otherUser = await api.getUser(userId);
       this.setState({
         otherUser: otherUser

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Layout } from '../Layout/Layout';
 import { ChatsPage } from '../ChatsPage/ChatsPage';
 import { ContactsPage } from '../ContactsPage/ContactsPage';
+import { ProfilePage } from '../ProfilePage/ProfilePage';
 import { Chat } from '../Chat/Chat';
+import { Login } from '../Login/Login';
 import api from '../../api';
 
 const ChatsView = () => {
@@ -19,30 +21,37 @@ const ChatView = () => {
   return <Layout body={<Chat />} />
 }
 
+const SettingsView = () => {
+  return <Layout body={<ProfilePage />} />
+}
+
 export class AppComponent extends Component {
-  async componentDidMount() {
-    const user = await api.getCurrentUser();
-    if (user) {
-      this.props.dispatch({
-        type: 'SET_USER',
-        user: user
+  componentDidMount() {
+    api.getCurrentUser()
+      .then((user) => {
+        this.props.dispatch({
+          type: 'SET_USER',
+          user
+        })
       })
-    }
+      .catch((err) => {console.log(err)});
   }
 
   render() {
     return (
-      <Switch>
-        <Route exact path="/" component={Layout} />
-        <Route exact path="/chats" component={ChatsView} />
-        <Route exact path="/contacts" component={ContactsView} />
-        <Route exact path="/chat/:id" component={ChatView} />
-        {/*<Route exact path="/search" component={SearchPage} />
-        <Route exact path="/init/create/:name" component={Init} />
-        <Route exact path="/init/join/:roomId" component={Init} />
-        <Route exact path="/profile" component={ProfileView} />
-        <Route exact path="/create_chat" component={CreateChatPage} />*/}
-      </Switch>
+      this.props.user
+        ? (<Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/chats" component={ChatsView} />
+            <Route exact path="/contacts" component={ContactsView} />
+            <Route exact path="/chat/:id" component={ChatView} />
+            <Route exact path="/settings" component={SettingsView} />
+            {/*<Route exact path="/search" component={SearchPage} />
+            <Route exact path="/init/create/:name" component={Init} />
+            <Route exact path="/init/join/:roomId" component={Init} />
+            <Route exact path="/create_chat" component={CreateChatPage} />*/}
+          </Switch>)
+        : <p></p>
     );
   }
 }
@@ -53,4 +62,4 @@ const mapStateToProps = state => {
   }
 }
 
-export const App = connect(mapStateToProps)(AppComponent);
+export const App = withRouter(connect(mapStateToProps)(AppComponent));

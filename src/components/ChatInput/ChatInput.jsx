@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../api';
 import './ChatInput.css';
-import { Message } from '../Message/Message';
 
 import { connect } from 'react-redux';
 
