@@ -15,7 +15,7 @@ import regSw from './reg-sw';
 
 //Example of usage API
 
-(async () => {
+/*(async () => {
   //
   // Events
   //
@@ -93,7 +93,7 @@ await api.onMessage((result) => {
   // console.log('Leave current user to room', await api.currentUserLeaveRoom(rooms.items[0]._id));
 
   console.log(api);
-})();
+})();*/
 
 /*(async () => {
   const user = await api.getCurrentUser();
