@@ -1,1 +1,12 @@
+.btn {
+  background: #34465c;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-family: inherit;
+}
 
+.btn:focus {
+  outline: none;
+}

@@ -51,7 +51,7 @@ export class AppComponent extends Component {
             <Route exact path="/init/join/:roomId" component={Init} />
             <Route exact path="/create_chat" component={CreateChatPage} />*/}
           </Switch>)
-        : <p></p>
+        : <p/>
     );
   }
 }

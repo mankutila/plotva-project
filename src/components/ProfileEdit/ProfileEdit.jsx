@@ -4,7 +4,6 @@ import { InputGroup } from '../InputGroup/InputGroup';
 import { Button } from '../Button/Button';
 
 import { connect } from 'react-redux';
-// import { setUser } from '../../store/actions/userActions';
 
 import './ProfileEdit.css';
 
@@ -38,10 +37,10 @@ export class ProfileEditComponent extends Component {
 
     api
       .saveUser(user)
-      .then(updatedUser => {
+      .then(() => {
         this.props.dispatch({
           type: 'SET_USER',
-          updatedUser
+          user
         });
         this.props.toggleEdit();
       })
@@ -65,25 +64,25 @@ export class ProfileEditComponent extends Component {
           name="name"
           onInputChange={this.onInputChange}
           value={user.name}
-          label="Enter your name"
+          label="Имя"
         />
         <InputGroup
           type="email"
           name="email"
           onInputChange={this.onInputChange}
           value={user.email}
-          label="Enter your e-mail"
+          label="E-mail"
         />
         <InputGroup
           type="tel"
           name="phone"
           onInputChange={this.onInputChange}
           value={user.phone}
-          label="Enter your phone number"
+          label="Номер телефона"
         />
-        <InputGroup type="file" name="avatar" label="Attach avatar" />
+        <InputGroup type="file" name="avatar" label="Прикрепить фото" />
 
-        <Button txt="Update" />
+        <Button txt="Сохранить" />
       </form>
     );
   }

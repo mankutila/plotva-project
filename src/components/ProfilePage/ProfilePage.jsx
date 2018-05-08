@@ -8,11 +8,7 @@ import './ProfilePage.css';
 class ProfilePageComponent extends Component {
   componentDidMount() {
     if (this.props.user.isFirstLogin && !this.state.edit) {
-      this.setState(prevState => {
-        return {
-          edit: true
-        }
-      })
+      this.setState({ edit: true })
     }
   }
 
@@ -31,18 +27,18 @@ class ProfilePageComponent extends Component {
     return (
       <React.Fragment>
         {this.props.user.isFirstLogin ? (
-          <h3>Enter some info:</h3>
+          <h3>Привет! Напиши немного о себе:</h3>
         ) : (
           <div className="profile-info">
-            {user.img && <img src={user.img} alt={user.name} className="profile-info_img" />}
-            <div className="profile-info_txt">
-              <p className="profile-info_name">{user.name}</p>
-              <p className="profile-info_email">{user.email}</p>
-              <p className="profile-info_phone">{user.phone}</p>
+            {user.img &&
+              <div className="profile-info__img"><img src={user.img} alt={user.name} /></div>
+            }
+            <div className="profile-info__txt">
+              <div className="profile-info__name">{user.name}</div>
+              <div className="profile-info__email">{user.email}</div>
+              <div className="profile-info__phone">{user.phone}</div>
             </div>
-            <button className="profile-info_edit" onClick={this.toggleEdit}>
-              <Icon type="header-write" />
-            </button>
+            <button className="profile-info__edit" onClick={this.toggleEdit}>Редактировать</button>
           </div>
         )}
 
