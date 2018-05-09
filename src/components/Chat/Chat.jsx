@@ -23,8 +23,8 @@ export class ChatComponent extends Component {
     }
   }
 
-  async componentWillUnmount() {
-    await api.currentUserLeaveRoom(this.state.room._id);
+  componentWillUnmount() {
+    // await api.currentUserLeaveRoom(this.state.room._id);
     this.props.dispatch({type: 'RESET_MESSAGES'});
   }
 
@@ -62,6 +62,7 @@ export class ChatComponent extends Component {
     const resp = await api.getRoom(this.props.match.id);
     this.setState({room: resp});
     api.currentUserJoinRoom(this.state.room._id);
+    console.log('I joined to room')
   }
 
 
@@ -70,6 +71,7 @@ export class ChatComponent extends Component {
 
     return (
       <div ref='wrap' className="messages-list">
+        {messages.length === 0 ? <p>No messages</p> : '' }
         {messages.map((message, index) => <Message key={index} {...message} />)}
         <ChatInput room={this.state.room} />
       </div>

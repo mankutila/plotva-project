@@ -12,6 +12,10 @@ export class ChatsPage extends Component {
   }
 
   async componentDidMount() {
+    this.getRooms();
+  }
+
+  async getRooms() {
     try {
       const response = await api.getCurrentUserRooms(999);
       this.setState(prevState => {
@@ -20,12 +24,12 @@ export class ChatsPage extends Component {
         };
       });
     } catch(err) {
-      this.setState({error: 'Произола ошибка при загрузке чатов'})
+      this.setState({error: 'Произошла ошибка при загрузке чатов'})
     }
   }
 
   render() {
     const rooms = this.state.rooms.items;
-    return rooms ? rooms.map((room, index) => <Link key={index} to={`/chat/${room._id}`}><ChatItem  {...room} /></Link>) : '';
+    return rooms ? rooms.map((room, index) => <Link key={index} to={`/chat/${room._id}`}><ChatItem {...room} /></Link>) : '';
   }
 }

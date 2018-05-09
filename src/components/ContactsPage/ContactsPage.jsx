@@ -3,6 +3,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { Avatar } from '../Avatar/Avatar';
 import api from '../../api';
 import './ContactsPage.css';
+import { MessageComponent } from '../Message/Message'
+import { connect } from 'react-redux'
 
 class ContactsPageComp extends Component {
   constructor() {
@@ -28,9 +30,7 @@ class ContactsPageComp extends Component {
     try {
       const resp = await api.getUsers(param);
       const next = resp.next;
-      this.setState(prevState => ({
-        users: [prevState.users, ...resp.items],
-      }));
+      this.setState({users: resp.items});
       await this.fetch(next);
     } catch (err) {
       console.error(err);
@@ -42,8 +42,9 @@ class ContactsPageComp extends Component {
     try {
       const room = await api.createRoom({ name });
       await this.joinUserToRoom(userId, room._id);
-      this.props.history.push(`/chat/${room._id}`).go(1);
+      // this.props.history.push(`/chat/${room._id}`).go(1);
     } catch (err) {
+      console.log(err);
       this.setState({ error: 'Произошла ошибка при создании комнаты.' });
     }
   };
@@ -53,14 +54,19 @@ class ContactsPageComp extends Component {
     try {
       await api.userJoinRoom(userId, roomId);
     } catch (err) {
+      console.log(err);
       this.setState({ error: 'Произошла ошибка при создании комнаты.' });
     }
   };
 
   render() {
-    return this.state.users.map((user, index) => {
+    const filteredUsers = this.state.users.filter((user) => {
+      return user._id !== this.props.user._id;
+    })
+    return filteredUsers.map((user, index) => {
       return (
         <section className="contact" key={index} onClick={() => {this.createRoomWithUser(user.name, user._id)}}>
+          partner name {user.name}, partner id {user._id}
           <Avatar size="sm" user={user} />
           {user.name ? user.name : 'Аноним'}
         </section>
@@ -69,4 +75,10 @@ class ContactsPageComp extends Component {
   }
 }
 
-export const ContactsPage = withRouter(ContactsPageComp);
+const mapStateToProps = state => {
+  return {
+    user: state.user.user
+  }
+}
+
+export const ContactsPage = withRouter(connect(mapStateToProps)(ContactsPageComp));

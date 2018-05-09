@@ -30,7 +30,10 @@ export class MessageComponent extends Component {
           <Avatar size="md" user={isMine ? user : this.state.otherUser} />
         </div>
         <div className="message__right">
-          <div className="message__txt">{message}</div>
+          <div className="message__txt">
+            {/*<div className="message__owner">{isMine ? user.name : this.state.otherUser.name}</div>*/}
+            {message}
+          </div>
           <div className="message__time">{formattedTime}</div>
         </div>
       </div>

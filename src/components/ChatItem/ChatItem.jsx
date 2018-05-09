@@ -15,19 +15,21 @@ export class ChatItem extends Component {
     }
   }
 
-  async componentDidMount() {
-    try {
-      const response = await api.getRoomMessages(this.props._id);
-      this.setState({
-        message: response && response.items && response.items[response.items.length - 1] && response.items[response.items.length - 1].message,
-        time: new Date(response.items[response.items.length - 1]['created_at'])
+  componentDidMount() {
+    api.getRoomMessages(this.props._id)
+      .then((response) => {
+        console.log('Expl', response);
+        this.setState({
+          message: response && response.items && response.items[response.items.length - 1] && response.items[response.items.length - 1].message,
+          time: response && response.items && response.items[response.items.length - 1] && new Date(response.items[response.items.length - 1]['created_at'])
+        })
       })
-    } catch(err) {
-      this.setState({
-        error: 'При загрузке сообщений произошла ошибка'
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          error: 'При загрузке сообщений произошла ошибка'
+        })
       })
-    }
-
   }
 
   render() {
