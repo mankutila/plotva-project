@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Avatar } from '../Avatar/Avatar';
 import api from '../../api';
 import './ContactsPage.css';
 
-export class ContactsPage extends Component {
+class ContactsPageComp extends Component {
   constructor() {
     super();
     this.state = {
@@ -41,15 +41,15 @@ export class ContactsPage extends Component {
   async createRoomWithUser(name, userId) {
     try {
       const room = await api.createRoom({ name });
-      this.props.history.push(`/chat/${room._id}`);
       await this.joinUserToRoom(userId, room._id);
-      console.log('CREATED ROOM', room)
+      this.props.history.push(`/chat/${room._id}`).go(1);
     } catch (err) {
       this.setState({ error: 'Произошла ошибка при создании комнаты.' });
     }
   };
 
   async joinUserToRoom(userId, roomId) {
+    console.log('try to join user with id ', userId, roomId)
     try {
       await api.userJoinRoom(userId, roomId);
     } catch (err) {
@@ -60,11 +60,13 @@ export class ContactsPage extends Component {
   render() {
     return this.state.users.map((user, index) => {
       return (
-        <Link className="contact" key={index} to={`/chat/${user._id}`} onClick={() => {this.createRoomWithUser(user.name, user._id)}}>
+        <section className="contact" key={index} onClick={() => {this.createRoomWithUser(user.name, user._id)}}>
           <Avatar size="sm" user={user} />
           {user.name ? user.name : 'Аноним'}
-        </Link>
+        </section>
       )
     });
   }
 }
+
+export const ContactsPage = withRouter(ContactsPageComp);

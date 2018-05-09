@@ -35,7 +35,21 @@ export class AppComponent extends Component {
         })
       })
       .catch((err) => {console.log(err)});
+    // this.subscribeOnMessages();
   }
+
+  /*subscribeOnMessages() {
+    api.onMessage()
+      .then((message) => console.log('New message: ', message));
+    console.log('NSDVSD SUBSCRIBED');
+    /!*api.onMessage((message) => {
+      console.log('New message: ', message);
+      this.props.dispatch({
+        type: 'SET_MESSAGES',
+        messages: [...this.props.messages, message]
+      })
+    });*!/
+  }*/
 
   render() {
     return (
@@ -58,7 +72,8 @@ export class AppComponent extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.user
+    user: state.user.user,
+    messages: state.messages.roomMessages
   }
 }
 

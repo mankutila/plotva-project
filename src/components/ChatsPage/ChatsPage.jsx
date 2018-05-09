@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../api';
 
 import './ChatsPage.css';
@@ -25,6 +26,6 @@ export class ChatsPage extends Component {
 
   render() {
     const rooms = this.state.rooms.items;
-    return rooms ? rooms.map((room, index) => <ChatItem key={index} {...room} />) : '';
+    return rooms ? rooms.map((room, index) => <Link key={index} to={`/chat/${room._id}`}><ChatItem  {...room} /></Link>) : '';
   }
 }

@@ -17,6 +17,10 @@ export class ChatComponent extends Component {
     this.getRoom();
   }
 
+  componentWillUnmount() {
+    this.props.dispatch({type: 'RESET_MESSAGES'})
+  }
+
   async getMsg(first = true, param) {
     if (param === null) {
       return;
@@ -52,6 +56,7 @@ export class ChatComponent extends Component {
     this.setState(prevState => ({
       room: resp
     }));
+    api.currentUserJoinRoom(this.state.room._id);
   }
 
 

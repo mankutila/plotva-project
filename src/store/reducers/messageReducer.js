@@ -16,6 +16,11 @@ export const messageReducer = (state = initialState, action) => {
         ...state,
         roomMessages: action.messages
       };
+    case 'RESET_MESSAGES':
+      return {
+        ...state,
+        roomMessages: []
+      };
 
     default:
       return state;
