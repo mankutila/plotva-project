@@ -17,8 +17,15 @@ export class ChatComponent extends Component {
     this.getRoom();
   }
 
-  componentWillUnmount() {
-    this.props.dispatch({type: 'RESET_MESSAGES'})
+  componentDidUpdate(prevProps) {
+    if (prevProps.messages.length !== this.props.messages.length) {
+      if (this.refs.wrap) document.documentElement.scrollTop = this.refs.wrap.scrollHeight;
+    }
+  }
+
+  async componentWillUnmount() {
+    await api.currentUserLeaveRoom(this.state.room._id);
+    this.props.dispatch({type: 'RESET_MESSAGES'});
   }
 
   async getMsg(first = true, param) {
@@ -53,9 +60,7 @@ export class ChatComponent extends Component {
 
   async getRoom() {
     const resp = await api.getRoom(this.props.match.id);
-    this.setState(prevState => ({
-      room: resp
-    }));
+    this.setState({room: resp});
     api.currentUserJoinRoom(this.state.room._id);
   }
 
@@ -64,11 +69,12 @@ export class ChatComponent extends Component {
     const { messages } = this.props;
 
     return (
-      <React.Fragment>
+      <div
+        ref='wrap'
+      >
         {messages.map((message, index) => <Message key={index} {...message} />)}
         <ChatInput room={this.state.room} />
-
-      </React.Fragment>
+      </div>
     );
   }
 }

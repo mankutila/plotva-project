@@ -20,6 +20,7 @@ export class ChatInputComponent extends Component {
   render() {
     return (
       <form
+        className="send-message"
         onSubmit={(e) => {
           e.preventDefault();
           this.sendMessage()
