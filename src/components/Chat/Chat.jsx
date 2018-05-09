@@ -69,9 +69,7 @@ export class ChatComponent extends Component {
     const { messages } = this.props;
 
     return (
-      <div
-        ref='wrap'
-      >
+      <div ref='wrap' className="messages-list">
         {messages.map((message, index) => <Message key={index} {...message} />)}
         <ChatInput room={this.state.room} />
       </div>

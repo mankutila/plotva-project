@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextareaAutosize from 'react-autosize-textarea';
 import api from '../../api';
 import './ChatInput.css';
 
@@ -10,7 +11,7 @@ export class ChatInputComponent extends Component {
   }
 
   async sendMessage() {
-    const mess = await api.sendMessage(this.props.room._id, this.refs.message.value);
+    const mess = await api.sendMessage(this.props.room._id, this.message.value);
     this.props.dispatch({
       type: 'APPEND_MESSAGES',
       messages: [...this.props.messages, mess]
@@ -26,8 +27,13 @@ export class ChatInputComponent extends Component {
           this.sendMessage()
         }
       }>
-        <input type="text" ref="message" placeholder="Ваше сообщение..." />
-        <button>Отправить</button>
+        <TextareaAutosize
+          maxRows={4}
+          className="send-message__txt"
+          innerRef={ref => this.message = ref}
+          placeholder="Ваше сообщение..."
+        />
+        <button className="send-message__btn">Отправить</button>
       </form>
 
     );
