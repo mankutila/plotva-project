@@ -42,7 +42,7 @@ class ContactsPageComp extends Component {
     try {
       const room = await api.createRoom({ name });
       await this.joinUserToRoom(userId, room._id);
-      // this.props.history.push(`/chat/${room._id}`).go(1);
+      this.props.history.push(`/chat/${room._id}`).go(1);
     } catch (err) {
       console.log(err);
       this.setState({ error: 'Произошла ошибка при создании комнаты.' });
@@ -65,7 +65,7 @@ class ContactsPageComp extends Component {
     })
     return filteredUsers.map((user, index) => {
       return (
-        <section className="contact" key={index} onClick={() => {this.createRoomWithUser(user.name, user._id)}}>
+        <section className="contact" key={index} onClick={() => {this.createRoomWithUser(`${user._id}, ${this.props.user._id}`, user._id)}}>
           partner name {user.name}, partner id {user._id}
           <Avatar size="sm" user={user} />
           {user.name ? user.name : 'Аноним'}
