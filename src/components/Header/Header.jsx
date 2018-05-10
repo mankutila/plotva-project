@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import './Header.css';
 import { Icon } from '../Icon/Icon';
 
 export class HeaderComp extends Component {
+  openMenu = () => {
+    this.props.dispatch({type: 'OPEN_MENU'})
+  }
   render() {
     const { type, viewTitle } = this.props;
     let title = '';
@@ -20,14 +24,20 @@ export class HeaderComp extends Component {
     return (
       <header className="header">
         <div className="header__left">
-          {type === "chat" && <span>Назад</span>}
-          <Icon type="menu" />
+          {type === "chat"
+            ? <span onClick={() => {this.props.history.goBack()}}>Назад</span>
+            : (
+              <div onClick={this.openMenu}>
+                <Icon type="menu" />
+              </div>
+              )
+          }
         </div>
         <div className="header__center">
           {title}
         </div>
         <div className="header__right">
-          {type === "chat" && <Icon type="add" />}
+          {type === "chats" && <Icon type="add" />}
         </div>
       </header>
     );
@@ -36,8 +46,9 @@ export class HeaderComp extends Component {
 
 const mapStateToProps = state => {
   return {
-    viewTitle: state.app.viewTitle
+    viewTitle: state.app.viewTitle,
+    isMenuOpened: state.app.isMenuOpened
   }
 }
 
-export const Header = connect(mapStateToProps)(HeaderComp);
+export const Header = withRouter(connect(mapStateToProps)(HeaderComp));

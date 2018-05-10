@@ -6,10 +6,21 @@ import { Link, withRouter } from 'react-router-dom';
 import './Menu.css';
 
 export class MenuComp extends Component {
+  closeMenu = () => {
+    this.props.dispatch({type:'CLOSE_MENU'});
+  }
   render() {
-    const { user } = this.props;
+    const { user, isMenuOpened } = this.props;
     return (
-      <Menu width={280}>
+      <Menu
+        width={280}
+        customBurgerIcon={false}
+        isOpen={isMenuOpened}
+        onStateChange={(state) => {
+          if (!state.isOpen) {
+            this.closeMenu();
+          }
+        }}>
         <div className="profile">
             <div className="avatar avatar--lg">
               <div className="avatar__img">
@@ -18,9 +29,9 @@ export class MenuComp extends Component {
             </div>
             <div>{user.name}</div>
         </div>
-        <Link to="/chats" className="menu-item">Чаты</Link>
-        <Link to="/contacts" className="menu-item">Контакты</Link>
-        <Link to="/settings" className="menu-item">Настройки</Link>
+        <Link to="/chats" onClick={this.closeMenu} className="menu-item">Чаты</Link>
+        <Link to="/contacts" onClick={this.closeMenu} className="menu-item">Контакты</Link>
+        <Link to="/settings" onClick={this.closeMenu} className="menu-item">Настройки</Link>
       </Menu>
     );
   }
@@ -29,6 +40,7 @@ export class MenuComp extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user.user,
+    isMenuOpened: state.app.isMenuOpened
   }
 }
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { Message } from '../Message/Message';
 import { ChatInput } from '../ChatInput/ChatInput';
-import { getChatName, formatTime } from '../../helpers/chatHelpers';
+import { getChatName } from '../../helpers/chatHelpers';
 
 import api from '../../api';
 import './Chat.css';

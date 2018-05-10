@@ -1,5 +1,6 @@
 const initialState = {
-  viewTitle: ''
+  viewTitle: '',
+  isMenuOpened: false
 }
 
 export const appReducer = (state = initialState, action) => {
@@ -8,6 +9,16 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         viewTitle: action.viewTitle
+      };
+    case 'OPEN_MENU':
+      return {
+        ...state,
+        isMenuOpened: true
+      };
+    case 'CLOSE_MENU':
+      return {
+        ...state,
+        isMenuOpened: false
       };
 
     default:
