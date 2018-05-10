@@ -27,4 +27,8 @@
   text-align: center;
   font-size: 18px;
   font-weight: 700;
+  max-width: calc(100% - 144px);
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }

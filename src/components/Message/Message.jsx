@@ -4,6 +4,7 @@ import './Message.css';
 import { Avatar } from '../Avatar/Avatar';
 import { connect } from 'react-redux';
 import api from '../../api';
+import { formatTime } from '../../helpers/chatHelpers';
 
 export class MessageComponent extends Component {
   state = {
@@ -12,17 +13,22 @@ export class MessageComponent extends Component {
   async componentDidMount() {
     const { user, userId } = this.props;
     if ((user && user._id) !== userId) {
-      const otherUser = await api.getUser(userId);
-      this.setState({
-        otherUser: otherUser
-      })
+      try {
+        const otherUser = await api.getUser(userId);
+        this.setState({
+          otherUser: otherUser
+        })
+      } catch(err) {
+        console.log(err)
+      }
+
     }
   }
 
   render() {
     const { user, userId, created_at, message } = this.props;
     const time = new Date(created_at);
-    const formattedTime = time ? `${time.getHours()}:${time.getMinutes()}` : '';
+    const formattedTime = time ? formatTime(time) : '';
     const isMine = (user && user._id) === userId;
     return (
       <div className={`message ${isMine ? 'message--my' : ''}`}>

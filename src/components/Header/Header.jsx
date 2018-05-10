@@ -27,7 +27,7 @@ export class HeaderComp extends Component {
 
   createRoomWithUsers = async (users) => {
     try {
-      const room = await api.createRoom({ name: 'Group chattt' });
+      const room = await api.createRoom({ name: `Group chattt ${Math.random()}` });
       await Promise.all(users.map(user => this.joinUserToRoom(user, room._id)));
     } catch (err) {
       this.setState({ error: 'Произошла при создании комнаты.' });
@@ -84,7 +84,7 @@ export class HeaderComp extends Component {
         <div className="header__right">
           {type === "chats" && <Link to="/create-chat"><Icon type="add" /></Link>}
           <div onClick={() => {
-            if (this.props.selectedUsers.length > 0) {
+            if (this.props.selectedUsers.length > 1) {
               this.createRoomWithUsers(this.props.selectedUsers)
                 .then(resp => {
                   console.log(resp)
@@ -92,6 +92,8 @@ export class HeaderComp extends Component {
                 .catch(err => {
                   console.log(err)
                 });
+            } else {
+              console.log('Нужно выбрать больше двух контактов')
             }
           }
           }>

@@ -36,15 +36,25 @@ export class ChatComponent extends Component {
       return;
     }
     if (first) {
-      const resp = await api.getRoomMessages(this.props.match.id);
+      try {
+        const resp = await api.getRoomMessages(this.props.match.params.id);
+        console.log('MESSAGES IN ROOM', this.props.match.params.id);
+        this.props.dispatch({
+          type: 'SET_MESSAGES',
+          messages: [...this.props.messages, ...resp.items]
+        })
+        await this.getMsg(false, resp.next);
+      } catch (err) {
+        console.log(err)
+      }
 
-      this.props.dispatch({
-        type: 'SET_MESSAGES',
-        messages: [...this.props.messages, ...resp.items]
-      })
-      await this.getMsg(false, resp.next);
     } else {
-      await this.getMoreMessages(param);
+      try {
+        await this.getMoreMessages(param);
+      } catch (err) {
+        console.log(err);
+      }
+
     }
   }
 
@@ -52,29 +62,38 @@ export class ChatComponent extends Component {
     if (next === null) {
       return;
     }
-    const resp = await api.getMessages(next);
+    try {
+      const resp = await api.getMessages(next);
 
-    this.props.dispatch({
-      type: 'SET_MESSAGES',
-      messages: [...this.props.messages, ...resp.items]
-    })
-    await this.getMoreMessages(resp.next);
+      this.props.dispatch({
+        type: 'SET_MESSAGES',
+        messages: [...this.props.messages, ...resp.items]
+      })
+      await this.getMoreMessages(resp.next);
+    } catch (err) {
+      console.log(err)
+    }
+
   }
 
   async getRoom() {
-    const resp = await api.getRoom(this.props.match.id);
-    this.setState({room: resp});
-    api.currentUserJoinRoom(this.state.room._id);
-    getChatName(resp.users, resp.name, this.props.user)
-      .then(chatName => {
-        this.props.dispatch({
-          type: 'SET_VIEW_TITLE',
-          viewTitle: chatName
+    try {
+      const resp = await api.getRoom(this.props.match.params.id);
+      this.setState({room: resp});
+      api.currentUserJoinRoom(this.state.room._id);
+      getChatName(resp.users, resp.name, this.props.user)
+        .then(chatName => {
+          this.props.dispatch({
+            type: 'SET_VIEW_TITLE',
+            viewTitle: chatName
+          })
         })
-      })
-      .catch(err => {
-        console.log(err);
-      })
+        .catch(err => {
+          console.log(err);
+        })
+    } catch(err) {
+      console.log(err)
+    }
     console.log('I joined room')
   }
 

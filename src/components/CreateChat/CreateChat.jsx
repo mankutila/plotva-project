@@ -14,8 +14,6 @@ class CreateChatComp extends Component {
       users: [],
       error: null
     };
-    this.createRoomWithUser = this.createRoomWithUser.bind(this);
-    this.joinUserToRoom = this.joinUserToRoom.bind(this);
   }
 
   componentDidMount() {
@@ -48,27 +46,6 @@ class CreateChatComp extends Component {
       this.setState({ error: 'Ошибка при загрузке контактов' });
     }
   }
-
-  async createRoomWithUser(name, userId) {
-    try {
-      const room = await api.createRoom({ name });
-      await this.joinUserToRoom(userId, room._id);
-      this.props.history.push(`/chat/${room._id}`).go(1);
-    } catch (err) {
-      console.log(err);
-      this.setState({ error: 'Произошла ошибка при создании комнаты.' });
-    }
-  };
-
-  async joinUserToRoom(userId, roomId) {
-    console.log('try to join user with id ', userId, roomId)
-    try {
-      await api.userJoinRoom(userId, roomId);
-    } catch (err) {
-      console.log(err);
-      this.setState({ error: 'Произошла ошибка при создании комнаты.' });
-    }
-  };
 
   render() {
     const filteredUsers = this.state.users.filter((user) => user._id !== this.props.user._id);
