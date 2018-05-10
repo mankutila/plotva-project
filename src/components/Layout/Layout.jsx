@@ -9,7 +9,7 @@ export function Layout(props) {
   return (
     <React.Fragment>
       <MenuComponent />
-      <Header />
+      <Header type={props.header} />
       <Body content={props.body} />
     </ React.Fragment>
   )

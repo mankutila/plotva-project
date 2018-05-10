@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import api from '../../api';
 
 import './ChatItem.css';
-import { GroupMembers } from '../GroupMembers/GroupMembers'
-import { Avatar } from '../Avatar/Avatar'
-import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { GroupMembers } from '../GroupMembers/GroupMembers';
+import { Avatar } from '../Avatar/Avatar';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getChatName, formatTime } from '../../helpers/chatHelpers';
 
 export class ChatItemComp extends Component {
   constructor() {
@@ -32,17 +33,10 @@ export class ChatItemComp extends Component {
           error: 'При загрузке сообщений произошла ошибка'
         })
       });
-    this.getChatName();
-  }
-
-  async getChatName() {
-    if (this.props.users.length > 2) {
-      this.setState({chatName: 'Group chat'});
-    } else {
-      const visibleId = this.props.name.split(', ').filter((name) => name !== this.props.user._id)[0];
-      const partner = await api.getUser(visibleId);
-      this.setState({chatName: partner.name});
-    }
+    getChatName(this.props.users, this.props.name, this.props.user)
+      .then(chatName => {
+        this.setState({chatName});
+      })
   }
 
   render() {
@@ -50,7 +44,7 @@ export class ChatItemComp extends Component {
     const { message, time, chatName } = this.state;
 
     const group = users.length > 2;
-    const formattedTime = time ? `${time.getHours()}:${time.getMinutes()}` : '';
+    const formattedTime = time ? formatTime(time) : '';
 
     return (
       <section className={`chat ${group ? 'chat--group' : ''}`}>

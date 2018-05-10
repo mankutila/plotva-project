@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import { Avatar } from '../Avatar/Avatar';
+
 import api from '../../api';
 import './ContactsPage.css';
-import { MessageComponent } from '../Message/Message'
-import { connect } from 'react-redux'
 
 class ContactsPageComp extends Component {
   constructor() {
@@ -16,7 +17,6 @@ class ContactsPageComp extends Component {
     this.createRoomWithUser = this.createRoomWithUser.bind(this);
     this.joinUserToRoom = this.joinUserToRoom.bind(this);
   }
-
 
   componentDidMount() {
     this.fetch();
@@ -66,7 +66,6 @@ class ContactsPageComp extends Component {
     return filteredUsers.map((user, index) => {
       return (
         <section className="contact" key={index} onClick={() => {this.createRoomWithUser(`${user._id}, ${this.props.user._id}`, user._id)}}>
-          partner name {user.name}, partner id {user._id}
           <Avatar size="sm" user={user} />
           {user.name ? user.name : 'Аноним'}
         </section>

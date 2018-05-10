@@ -10,19 +10,19 @@ import { Login } from '../Login/Login';
 import api from '../../api';
 
 const ChatsView = () => {
-  return <Layout body={<ChatsPage />} />
+  return <Layout body={<ChatsPage />} header="chats" />
 }
 
 const ContactsView = () => {
-  return <Layout body={<ContactsPage />} />
+  return <Layout body={<ContactsPage />} header="contacts" />
 }
 
 const ChatView = () => {
-  return <Layout body={<Chat />} />
+  return <Layout body={<Chat />} header="chat" />
 }
 
 const SettingsView = () => {
-  return <Layout body={<ProfilePage />} />
+  return <Layout body={<ProfilePage />} header="profile" />
 }
 
 export class AppComponent extends Component {
@@ -35,21 +35,7 @@ export class AppComponent extends Component {
         })
       })
       .catch((err) => {console.log(err)});
-    // this.subscribeOnMessages();
   }
-
-  /*subscribeOnMessages() {
-    api.onMessage()
-      .then((message) => console.log('New message: ', message));
-    console.log('NSDVSD SUBSCRIBED');
-    /!*api.onMessage((message) => {
-      console.log('New message: ', message);
-      this.props.dispatch({
-        type: 'SET_MESSAGES',
-        messages: [...this.props.messages, message]
-      })
-    });*!/
-  }*/
 
   render() {
     return (
@@ -61,8 +47,6 @@ export class AppComponent extends Component {
             <Route exact path="/chat/:id" component={ChatView} />
             <Route exact path="/settings" component={SettingsView} />
             {/*<Route exact path="/search" component={SearchPage} />
-            <Route exact path="/init/create/:name" component={Init} />
-            <Route exact path="/init/join/:roomId" component={Init} />
             <Route exact path="/create_chat" component={CreateChatPage} />*/}
           </Switch>)
         : <p/>

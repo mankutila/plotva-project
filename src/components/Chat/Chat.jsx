@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import api from '../../api';
-import './Chat.css';
+import { connect } from 'react-redux';
+
 import { Message } from '../Message/Message';
 import { ChatInput } from '../ChatInput/ChatInput';
-import {connect} from 'react-redux';
+import { getChatName, formatTime } from '../../helpers/chatHelpers';
+
+import api from '../../api';
+import './Chat.css';
 
 export class ChatComponent extends Component {
   state = {
@@ -24,7 +27,6 @@ export class ChatComponent extends Component {
   }
 
   componentWillUnmount() {
-    // await api.currentUserLeaveRoom(this.state.room._id);
     this.props.dispatch({type: 'RESET_MESSAGES'});
   }
 
@@ -62,7 +64,17 @@ export class ChatComponent extends Component {
     const resp = await api.getRoom(this.props.match.id);
     this.setState({room: resp});
     api.currentUserJoinRoom(this.state.room._id);
-    console.log('I joined to room')
+    getChatName(resp.users, resp.name, this.props.user)
+      .then(chatName => {
+        this.props.dispatch({
+          type: 'SET_VIEW_TITLE',
+          viewTitle: chatName
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    console.log('I joined room')
   }
 
 
@@ -71,8 +83,11 @@ export class ChatComponent extends Component {
 
     return (
       <div ref='wrap' className="messages-list">
-        {messages.length === 0 ? <p>No messages</p> : '' }
-        {messages.map((message, index) => <Message key={index} {...message} />)}
+        {messages.length === 0
+          ?
+          <p>Напишите что-нибудь</p>
+          : messages.map((message, index) => <Message key={index} {...message} />)
+        }
         <ChatInput room={this.state.room} />
       </div>
     );
@@ -81,7 +96,9 @@ export class ChatComponent extends Component {
 
 const mapStateToProps = state => {
   return {
-    messages: state.messages.roomMessages
+    user: state.user.user,
+    messages: state.messages.roomMessages,
+    viewTitle: state.app.viewTitle
   }
 }
 
