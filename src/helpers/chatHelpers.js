@@ -1,6 +1,6 @@
 import api from '../api'
 
-async function getChatName(chatMembers, chatNameFromDb, currentUser) {
+async function getChatName(chatMembers = [], chatNameFromDb = '', currentUser = {}) {
   let chatName = '';
   if (chatMembers.length > 2) {
     chatName = 'Group chat';

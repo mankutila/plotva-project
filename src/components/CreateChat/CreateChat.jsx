@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { Avatar } from '../Avatar/Avatar';
+import { Contact } from '../Contact/Contact';
 
 import api from '../../api';
-import './ContactsPage.css';
+import './CreateChat.css';
 
-class ContactsPageComp extends Component {
+class CreateChatComp extends Component {
   constructor() {
     super();
     this.state = {
@@ -20,6 +20,13 @@ class ContactsPageComp extends Component {
 
   componentDidMount() {
     this.fetch();
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch({
+      type: 'SET_SELECTED_USER',
+      selectedUsers: []
+    });
   }
 
   async fetch(param) {
@@ -64,17 +71,8 @@ class ContactsPageComp extends Component {
   };
 
   render() {
-    const filteredUsers = this.state.users.filter((user) => {
-      return user._id !== this.props.user._id;
-    })
-    return filteredUsers.map((user, index) => {
-      return (
-        <section className="contact" key={index} onClick={() => {this.createRoomWithUser(`${user._id}, ${this.props.user._id}`, user._id)}}>
-          <Avatar size="sm" user={user} />
-          {user.name ? user.name : 'Аноним'}
-        </section>
-      )
-    });
+    const filteredUsers = this.state.users.filter((user) => user._id !== this.props.user._id);
+    return filteredUsers.map((user, index) => <Contact user={user} key={index} index={index} />);
   }
 }
 
@@ -84,4 +82,4 @@ const mapStateToProps = state => {
   }
 }
 
-export const ContactsPage = withRouter(connect(mapStateToProps)(ContactsPageComp));
+export const CreateChat = withRouter(connect(mapStateToProps)(CreateChatComp));

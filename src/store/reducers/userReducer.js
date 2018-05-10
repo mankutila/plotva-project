@@ -1,5 +1,6 @@
 const initialState = {
-  user: null
+  user: null,
+  selectedUsers: []
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -8,6 +9,11 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
+      };
+    case 'SET_SELECTED_USER':
+      return {
+        ...state,
+        selectedUsers: action.selectedUsers,
       };
 
     default:

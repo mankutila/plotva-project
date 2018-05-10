@@ -28,6 +28,7 @@ export class ChatComponent extends Component {
 
   componentWillUnmount() {
     this.props.dispatch({type: 'RESET_MESSAGES'});
+    this.props.dispatch({type: 'SET_VIEW_TITLE', viewTitle: ''});
   }
 
   async getMsg(first = true, param) {

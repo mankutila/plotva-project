@@ -17,14 +17,14 @@
   background-image: url(./img/plus.svg);
 }
 
-.icon--add {
-  width: 25px;
-  height: 25px;
-  background-image: url(./img/plus.svg);
-}
-
 .icon--file {
   width: 19px;
   height: 19px;
   background-image: url(./img/attach.svg);
+}
+
+.icon--ok {
+  width: 30px;
+  height: 30px;
+  background-image: url(./img/ok.svg);
 }
