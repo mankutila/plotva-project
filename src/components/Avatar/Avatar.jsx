@@ -3,10 +3,16 @@ import React from 'react';
 import './Avatar.css';
 
 export function Avatar( props ) {
-  const { user, size } = props;
+  const { user, size, chatName } = props;
+  let name = '';
   let defaultName = '';
   if (user && user.name) {
-    user.name.split(' ').forEach(word => {
+    name = user.name;
+  } else if (chatName) {
+    name = chatName;
+  }
+  if (name) {
+    name.split(' ').forEach(word => {
       defaultName += word[0];
     });
     defaultName.slice(2);

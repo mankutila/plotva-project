@@ -53,7 +53,7 @@ export class ChatItemComp extends Component {
           <React.Fragment>
             <div className="chat__name">{chatName}</div>
             <div className="chat__left">
-              <Avatar size="sm" />
+              <Avatar size="sm" chatName={chatName} />
             </div>
             <div className="chat__right">
               <div className="chat__msg">{message}</div>
@@ -67,7 +67,7 @@ export class ChatItemComp extends Component {
         {!group && (
           <React.Fragment>
             <div className="chat__left">
-              <Avatar size="sm" />
+              <Avatar size="sm" chatName={chatName} />
             </div>
             <div className="chat__right">
               <div className="chat__name">{chatName}</div>
