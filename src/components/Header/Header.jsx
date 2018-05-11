@@ -7,28 +7,15 @@ import './Header.css';
 import { Icon } from '../Icon/Icon';
 
 export class HeaderComp extends Component {
-  /*newChat = async () => {
-    const {user, selectedUsers} = this.props
-    try {
-      const rooms = await api.getRooms({ name: this.props.chatName });
-      if (!rooms.count) {
-        selectedUsers.push(user)
-        await this.createRoomWithUsers(this.props.chatName, selectedUsers);
-
-        const users = [].concat(this.props.users);
-        users.forEach(user => {user.checked = false});
-        /!*this.props.dispatch(setUsers(users));
-        this.props.dispatch(setSelectedUsers([]));*!/
-      }
-    } catch (err) {
-      this.setState({ error: 'Произошла ошибка.' });
-    }
-  };*/
+  state = {
+    error: null
+  }
 
   createRoomWithUsers = async (users) => {
     try {
       const room = await api.createRoom({ name: `Group chat ${Math.random()}` });
       await Promise.all(users.map(user => this.joinUserToRoom(user, room._id)));
+      this.props.history.push(`/chat/${room._id}`).go(1);
     } catch (err) {
       this.setState({ error: 'Произошла при создании комнаты.' });
     }
@@ -41,8 +28,6 @@ export class HeaderComp extends Component {
       this.setState({ error: 'Произошла ошибка при создании комнаты.' });
     }
   };
-
-
 
   toggleMenu = () => {
     if (this.props.isMenuOpened) {
@@ -83,8 +68,8 @@ export class HeaderComp extends Component {
         </div>
         <div className="header__right">
           {type === "chats" && <Link to="/create-chat"><Icon type="add" /></Link>}
-          <div onClick={() => {
-            if (this.props.selectedUsers.length > 1) {
+          {type === "create-chat" && this.props.selectedUsers.length > 1 &&
+            <div onClick={() => {
               this.createRoomWithUsers(this.props.selectedUsers)
                 .then(resp => {
                   console.log(resp)
@@ -92,14 +77,9 @@ export class HeaderComp extends Component {
                 .catch(err => {
                   console.log(err)
                 });
-            } else {
-              console.log('Нужно выбрать больше двух контактов')
             }
+            }><Icon type="ok" /></div>
           }
-          }>
-            {type === "create-chat" && <Icon type="ok" />}
-          </div>
-
         </div>
       </header>
     );

@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 700;
 }
 
 .avatar__img img {
@@ -38,6 +39,7 @@
 .avatar--sm .avatar__img {
   width: 30px;
   height: 30px;
+  font-size: 12px;
 }
 
 .avatar--md .avatar__img {
@@ -48,6 +50,7 @@
 .avatar--lg .avatar__img {
   width: 70px;
   height: 70px;
+  font-size: 18px;
 }
 
 .avatar--sm .avatar--online::after {

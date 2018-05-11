@@ -30,6 +30,10 @@ export class ChatsPage extends Component {
 
   render() {
     const rooms = this.state.rooms.items;
-    return rooms ? rooms.map((room, index) => <Link key={index} to={`/chat/${room._id}`}><ChatItem {...room} /></Link>) : '';
+    let result = <p>Пока чатов нет</p>;
+    if (rooms && rooms.length > 0) {
+      result = rooms.map((room, index) => <Link key={index} to={`/chat/${room._id}`}><ChatItem {...room} /></Link>);
+    }
+    return result;
   }
 }

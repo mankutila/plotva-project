@@ -17,7 +17,7 @@ export class ChatComponent extends Component {
 
   componentDidMount() {
     this.getMsg();
-    this.getRoom();
+    this.enterRoom();
   }
 
   componentDidUpdate(prevProps) {
@@ -76,7 +76,7 @@ export class ChatComponent extends Component {
 
   }
 
-  async getRoom() {
+  async enterRoom() {
     try {
       const resp = await api.getRoom(this.props.match.params.id);
       this.setState({room: resp});

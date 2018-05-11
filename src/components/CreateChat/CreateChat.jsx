@@ -49,7 +49,11 @@ class CreateChatComp extends Component {
 
   render() {
     const filteredUsers = this.state.users.filter((user) => user._id !== this.props.user._id);
-    return filteredUsers.map((user, index) => <Contact user={user} key={index} index={index} />);
+    return (<React.Fragment>
+        <p>Выберите не менее двух контактов</p>
+        {filteredUsers.map((user, index) => <Contact user={user} key={index} index={index} />)}
+      </React.Fragment>)
+
   }
 }
 
