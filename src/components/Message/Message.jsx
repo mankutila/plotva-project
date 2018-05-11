@@ -10,6 +10,7 @@ export class MessageComponent extends Component {
   state = {
     otherUser: null
   }
+
   async componentDidMount() {
     const { user, userId } = this.props;
     if ((user && user._id) !== userId) {
@@ -21,13 +22,13 @@ export class MessageComponent extends Component {
       } catch(err) {
         console.log(err)
       }
-
     }
   }
 
   render() {
-    const { user, userId, created_at, message } = this.props;
-    const time = new Date(created_at);
+    const { user, userId, message } = this.props;
+    const createdAt = this.props.created_at;
+    const time = new Date(createdAt);
     const formattedTime = time ? formatTime(time) : '';
     const isMine = (user && user._id) === userId;
     return (

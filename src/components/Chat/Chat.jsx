@@ -38,7 +38,6 @@ export class ChatComponent extends Component {
     if (first) {
       try {
         const resp = await api.getRoomMessages(this.props.match.params.id);
-        console.log('MESSAGES IN ROOM', this.props.match.params.id);
         this.props.dispatch({
           type: 'SET_MESSAGES',
           messages: [...this.props.messages, ...resp.items]

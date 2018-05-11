@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { slide as Menu } from 'react-burger-menu';
 import { Link, withRouter } from 'react-router-dom';
 import { Avatar } from '../Avatar/Avatar';
-
 import './Menu.css';
 
 export class MenuComp extends Component {
@@ -24,7 +23,6 @@ export class MenuComp extends Component {
         }}>
         <div className="profile">
             <Avatar size="lg" user={user}/>
-
             <div>{user.name}</div>
         </div>
         <Link to="/chats" onClick={this.closeMenu} className="menu-item">Чаты</Link>

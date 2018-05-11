@@ -19,7 +19,8 @@ export class GroupMembers extends Component {
   }
 
   render() {
-    let plus = false, count = 0;
+    let plus = false;
+    let count = 0;
     if (this.state.users > 6) {
       plus = true;
       count = this.state.users - 6;

@@ -7,8 +7,8 @@ import { ContactsPage } from '../ContactsPage/ContactsPage';
 import { ProfilePage } from '../ProfilePage/ProfilePage';
 import { Chat } from '../Chat/Chat';
 import { Login } from '../Login/Login';
+import { CreateChat } from '../CreateChat/CreateChat';
 import api from '../../api';
-import { CreateChat } from '../CreateChat/CreateChat'
 
 const ChatsView = () => {
   return <Layout body={<ChatsPage />} header="chats" />
@@ -52,8 +52,6 @@ export class AppComponent extends Component {
             <Route exact path="/chat/:id" component={ChatView} />
             <Route exact path="/settings" component={SettingsView} />
             <Route exact path="/create-chat" component={CreateChatView} />
-            {/*<Route exact path="/search" component={SearchPage} />
-            <Route exact path="/create_chat" component={CreateChatPage} />*/}
           </Switch>)
         : <p/>
     );

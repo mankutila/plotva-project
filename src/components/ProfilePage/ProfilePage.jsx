@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { ProfileEdit } from '../ProfileEdit/ProfileEdit';
-import { Icon } from '../Icon/Icon';
-
 import { connect } from 'react-redux';
+
+import { ProfileEdit } from '../ProfileEdit/ProfileEdit';
 import './ProfilePage.css';
 
 class ProfilePageComponent extends Component {

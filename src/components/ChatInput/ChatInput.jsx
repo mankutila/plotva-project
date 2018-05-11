@@ -36,7 +36,7 @@ export class ChatInputComponent extends Component {
         <TextareaAutosize
           maxRows={4}
           className="send-message__txt"
-          innerRef={ref => this.message = ref}
+          innerRef={ref => {this.message = ref}}
           placeholder="Ваше сообщение..."
           autoFocus
         />

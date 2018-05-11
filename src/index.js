@@ -6,12 +6,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { store } from './store/store';
 // import { setUser } from './store/actions/userActions';
 import { App } from './components/App/App';
-import api from './api';
 
 import './index.css';
 
 import { registerSocketEventListeners } from './registerSocketEventListeners';
-import regSw from './reg-sw';
 
 //Example of usage API
 
@@ -117,4 +115,3 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('root'),
 );
-// regSw();

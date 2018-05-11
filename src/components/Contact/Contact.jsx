@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { Avatar } from '../Avatar/Avatar';
 
-import api from '../../api';
 import './Contact.css';
 
 class ContactComp extends Component {
@@ -64,7 +63,6 @@ class ContactComp extends Component {
           {user.name ? user.name : 'Аноним'}
         </section>
       )
-
   }
 }
 
