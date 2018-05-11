@@ -27,7 +27,7 @@ export class HeaderComp extends Component {
 
   createRoomWithUsers = async (users) => {
     try {
-      const room = await api.createRoom({ name: `Group chattt ${Math.random()}` });
+      const room = await api.createRoom({ name: `Group chat ${Math.random()}` });
       await Promise.all(users.map(user => this.joinUserToRoom(user, room._id)));
     } catch (err) {
       this.setState({ error: 'Произошла при создании комнаты.' });

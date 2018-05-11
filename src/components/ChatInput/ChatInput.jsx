@@ -11,11 +11,16 @@ export class ChatInputComponent extends Component {
   }
 
   async sendMessage() {
-    const mess = await api.sendMessage(this.props.room._id, this.message.value);
-    this.props.dispatch({
-      type: 'APPEND_MESSAGES',
-      messages: [...this.props.messages, mess]
-    })
+    try {
+      const mess = await api.sendMessage(this.props.room._id, this.message.value);
+      this.props.dispatch({
+        type: 'APPEND_MESSAGES',
+        messages: [...this.props.messages, mess]
+      });
+      this.message.value = '';
+    } catch(err) {
+      console.log(err);
+    }
   }
 
   render() {
@@ -25,13 +30,15 @@ export class ChatInputComponent extends Component {
         onSubmit={(e) => {
           e.preventDefault();
           this.sendMessage()
-        }
-      }>
+        }}
+        ref="form"
+      >
         <TextareaAutosize
           maxRows={4}
           className="send-message__txt"
           innerRef={ref => this.message = ref}
           placeholder="Ваше сообщение..."
+          autoFocus
         />
         <button className="send-message__btn">Отправить</button>
       </form>

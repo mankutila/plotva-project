@@ -3,7 +3,7 @@ import api from '../api'
 async function getChatName(chatMembers = [], chatNameFromDb = '', currentUser = {}) {
   let chatName = '';
   if (chatMembers.length > 2) {
-    chatName = 'Group chat';
+    chatName = 'Групповой чат';
   } else {
     const visibleId = chatNameFromDb.split(', ').filter((name) => name !== currentUser._id)[0];
     try {

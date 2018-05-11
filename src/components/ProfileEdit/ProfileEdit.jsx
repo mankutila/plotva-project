@@ -30,7 +30,7 @@ export class ProfileEditComponent extends Component {
   onSubmit = async e => {
     e.preventDefault();
     const file = document.querySelector('input[type=file]').files[0];
-    const user = this.state;
+    const user = { ...this.state, isFirstLogin: false };
     if (file) {
       user.img = await this.readFile(file);
     }
