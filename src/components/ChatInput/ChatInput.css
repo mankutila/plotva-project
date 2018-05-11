@@ -6,14 +6,8 @@
   right: 0;
 }
 
-.send-message__txt:focus,
-.send-message__txt:active,
-.send-message__btn:focus,
-.send-message__btn:active {
-  outline: none;
-}
-
-.send-message__txt, .send-message__btn {
+.send-message__txt,
+.send-message__btn {
   border: none;
   background: none;
   background-color: #34465c;
@@ -26,6 +20,13 @@
   flex-grow: 1;
   resize: none;
   margin: 0 0 -1px 0;
+}
+
+.send-message__txt:focus,
+.send-message__txt:active,
+.send-message__btn:focus,
+.send-message__btn:active {
+  outline: none;
 }
 
 .send-message__txt::placeholder {

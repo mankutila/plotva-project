@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Contact } from '../Contact/Contact';
 
 import api from '../../api';
-import './CreateChat.css';
 
 class CreateChatComp extends Component {
   constructor() {

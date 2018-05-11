@@ -26,7 +26,7 @@
 }
 
 .profile {
-  display: flex!important;
+  display: flex !important;
   align-items: center;
   margin-bottom: 10px;
   font-size: 14px;

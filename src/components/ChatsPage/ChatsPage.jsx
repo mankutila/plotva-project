@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api';
 
-import './ChatsPage.css';
 import { ChatItem } from '../ChatItem/ChatItem'
 
 export class ChatsPage extends Component {

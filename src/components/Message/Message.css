@@ -17,7 +17,7 @@
   background-color: #637589;
 }
 
-.message__txt:before {
+.message__txt::before {
   content: '';
   display: block;
   position: absolute;
@@ -28,7 +28,6 @@
   top: 16px;
   left: -5px;
   border-width: 4px 5px 4px 0;
-
 }
 
 .message__time {
@@ -43,7 +42,7 @@
 }
 
 .message--my .message__right {
-  order: -1
+  order: -1;
 }
 
 .message--my .message__txt {
@@ -51,7 +50,7 @@
   background-color: #fff;
 }
 
-.message--my .message__txt:before {
+.message--my .message__txt::before {
   border-color: transparent transparent transparent #fff;
   top: 16px;
   left: auto;

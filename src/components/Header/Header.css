@@ -14,7 +14,8 @@
   z-index: 100;
 }
 
-.header__left, .header__right {
+.header__left,
+.header__right {
   flex: 0 0 72px;
 }
 

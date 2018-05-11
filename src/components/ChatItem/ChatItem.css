@@ -24,7 +24,7 @@
   display: flex;
   border-bottom: 1px solid #eaeaea;
   padding: 20px 0;
-  color: #7D8A96;
+  color: #7d8a96;
   position: relative;
 }
 
@@ -39,13 +39,10 @@
 
 .chat--group .chat__name {
   width: 100%;
+  margin-bottom: 20px;
+  padding-right: 40px;
 }
 
 .chat--group .chat__right {
   flex: 0 0 80%;
-}
-
-.chat--group .chat__name {
-  margin-bottom: 20px;
-  padding-right: 40px;
 }
