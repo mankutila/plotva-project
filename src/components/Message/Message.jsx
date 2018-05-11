@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Avatar } from '../Avatar/Avatar';
+import api from '../../api';
 
 import './Message.css';
-import { Avatar } from '../Avatar/Avatar';
-import { connect } from 'react-redux';
-import api from '../../api';
 import { formatTime } from '../../helpers/chatHelpers';
 
 export class MessageComponent extends Component {
-  state = {
-    otherUser: null
-  }
-
   async componentDidMount() {
     const { user, userId } = this.props;
     if ((user && user._id) !== userId) {
@@ -23,6 +20,10 @@ export class MessageComponent extends Component {
         console.log(err)
       }
     }
+  }
+
+  state = {
+    otherUser: null
   }
 
   render() {
@@ -38,7 +39,6 @@ export class MessageComponent extends Component {
         </div>
         <div className="message__right">
           <div className="message__txt">
-            {/*<div className="message__owner">{isMine ? user.name : this.state.otherUser.name}</div>*/}
             {message}
           </div>
           <div className="message__time">{formattedTime}</div>
@@ -55,3 +55,10 @@ const mapStateToProps = state => {
 }
 
 export const Message = connect(mapStateToProps)(MessageComponent);
+
+MessageComponent.propTypes = {
+  user: PropTypes.object,
+  userId: PropTypes.string,
+  message: PropTypes.string,
+  created_at: PropTypes.number
+}

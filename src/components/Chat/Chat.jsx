@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { Message } from '../Message/Message';
 import { ChatInput } from '../ChatInput/ChatInput';
@@ -10,11 +11,6 @@ import api from '../../api';
 import './Chat.css';
 
 export class ChatComponent extends Component {
-  state = {
-    room: null,
-    error: null
-  }
-
   componentDidMount() {
     this.getMsg();
     this.enterRoom();
@@ -29,6 +25,11 @@ export class ChatComponent extends Component {
   componentWillUnmount() {
     this.props.dispatch({type: 'RESET_MESSAGES'});
     this.props.dispatch({type: 'SET_VIEW_TITLE', viewTitle: ''});
+  }
+
+  state = {
+    room: null,
+    error: null
   }
 
   async getMsg(first = true, param) {
@@ -122,3 +123,10 @@ const mapStateToProps = state => {
 }
 
 export const Chat = withRouter(connect(mapStateToProps)(ChatComponent));
+
+ChatComponent.propTypes = {
+  messages: PropTypes.array,
+  user: PropTypes.object,
+  match: PropTypes.object,
+  dispatch: PropTypes.func
+}

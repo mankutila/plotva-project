@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { ProfileEdit } from '../ProfileEdit/ProfileEdit';
+import { ProfileEdit } from '../ProfileEdit/ProfileEdit'
 import './ProfilePage.css';
 
 class ProfilePageComponent extends Component {
@@ -52,3 +53,7 @@ const stateToProps = state => ({
 });
 
 export const ProfilePage = connect(stateToProps)(ProfilePageComponent);
+
+ProfilePageComponent.propTypes = {
+  user: PropTypes.object
+}

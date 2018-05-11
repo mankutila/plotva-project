@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { Avatar } from '../Avatar/Avatar';
 
@@ -66,15 +67,19 @@ class ContactsPageComp extends Component {
   render() {
     const filteredUsers = this.state.users.filter((user) => {
       return user._id !== this.props.user._id;
-    })
-    return filteredUsers.map((user, index) => {
-      return (
-        <section className="contact" key={index} onClick={() => {this.createRoomWithUser(`${user._id}, ${this.props.user._id}`, user._id)}}>
-          <Avatar size="sm" user={user} />
-          {user.name ? user.name : 'Аноним'}
-        </section>
-      )
     });
+    if (filteredUsers.length > 0) {
+      return filteredUsers.map((user, index) => {
+        return (
+          <section className="contact" key={index} onClick={() => {this.createRoomWithUser(`${user._id}, ${this.props.user._id}`, user._id)}}>
+            <Avatar size="sm" user={user} />
+            {user.name ? user.name : 'Аноним'}
+          </section>
+        )
+      });
+    } else {
+      return <p>В списке контактов пусто</p>
+    }
   }
 }
 
@@ -85,3 +90,9 @@ const mapStateToProps = state => {
 }
 
 export const ContactsPage = withRouter(connect(mapStateToProps)(ContactsPageComp));
+
+ContactsPageComp.propTypes = {
+  user: PropTypes.object,
+  history: PropTypes.object,
+}
+

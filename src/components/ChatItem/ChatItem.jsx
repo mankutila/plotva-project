@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import api from '../../api';
 
 import './ChatItem.css';
@@ -90,3 +91,10 @@ const mapStateToProps = state => {
 }
 
 export const ChatItem = withRouter(connect(mapStateToProps)(ChatItemComp));
+
+ChatItemComp.propTypes = {
+  _id: PropTypes.string,
+  users: PropTypes.array,
+  name: PropTypes.string,
+  user: PropTypes.object
+}

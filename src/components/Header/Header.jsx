@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import api from '../../api';
 
 import './Header.css';
@@ -95,3 +96,12 @@ const mapStateToProps = state => {
 }
 
 export const Header = withRouter(connect(mapStateToProps)(HeaderComp));
+
+HeaderComp.propTypes = {
+  selectedUsers: PropTypes.array,
+  history: PropTypes.object,
+  isMenuOpened: PropTypes.bool,
+  type: PropTypes.string,
+  viewTitle: PropTypes.string,
+  dispatch: PropTypes.func
+}

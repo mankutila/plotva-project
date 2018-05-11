@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Body.css';
 
 export function Body (props) {
@@ -7,4 +8,8 @@ export function Body (props) {
       {props.content}
     </main>
   );
+}
+
+Body.propTypes = {
+  content: PropTypes.element
 }

@@ -5,13 +5,13 @@ import api from '../../api';
 import { ChatItem } from '../ChatItem/ChatItem'
 
 export class ChatsPage extends Component {
+  async componentDidMount() {
+    this.getRooms();
+  }
+
   state = {
     rooms: [],
     error: null
-  }
-
-  async componentDidMount() {
-    this.getRooms();
   }
 
   async getRooms() {

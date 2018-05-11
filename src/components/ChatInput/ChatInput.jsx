@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-autosize-textarea';
 import api from '../../api';
-import './ChatInput.css';
 
-import { connect } from 'react-redux';
+import './ChatInput.css';
 
 export class ChatInputComponent extends Component {
   state = {
@@ -42,7 +43,6 @@ export class ChatInputComponent extends Component {
         />
         <button className="send-message__btn">Отправить</button>
       </form>
-
     );
   }
 }
@@ -55,3 +55,10 @@ const mapStateToProps = state => {
 }
 
 export const ChatInput = connect(mapStateToProps)(ChatInputComponent);
+
+ChatInputComponent.propTypes = {
+  messages: PropTypes.array,
+  dispatch: PropTypes.func,
+  room: PropTypes.object,
+  roomId: PropTypes.string
+}

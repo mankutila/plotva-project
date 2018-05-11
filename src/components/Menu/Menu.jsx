@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { slide as Menu } from 'react-burger-menu';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Avatar } from '../Avatar/Avatar';
 import './Menu.css';
 
@@ -41,3 +42,9 @@ const mapStateToProps = state => {
 }
 
 export const MenuComponent = withRouter(connect(mapStateToProps)(MenuComp));
+
+MenuComp.propTypes = {
+  user: PropTypes.object,
+  dispatch: PropTypes.func,
+  isMenuOpened: PropTypes.bool
+}

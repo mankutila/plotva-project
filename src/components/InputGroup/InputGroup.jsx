@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from '../Icon/Icon';
+import PropTypes from 'prop-types';
 
 import './InputGroup.css';
 
@@ -17,4 +18,12 @@ export function InputGroup(props) {
       />
     </label>
   );
+}
+
+InputGroup.propTypes = {
+  name: PropTypes.string,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  value: PropTypes.string,
+  onInputChange: PropTypes.func
 }

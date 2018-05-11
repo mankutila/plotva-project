@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { InputGroup } from '../InputGroup/InputGroup';
 import { Button } from '../Button/Button';
@@ -93,3 +94,9 @@ const mapStateToProps = state => ({
 });
 
 export const ProfileEdit = connect(mapStateToProps)(ProfileEditComponent);
+
+ProfileEditComponent.propTypes = {
+  user: PropTypes.object,
+  dispatch: PropTypes.func,
+  toggleEdit: PropTypes.func
+}

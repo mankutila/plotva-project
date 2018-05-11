@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Layout } from '../Layout/Layout';
 import { ChatsPage } from '../ChatsPage/ChatsPage';
 import { ContactsPage } from '../ContactsPage/ContactsPage';
@@ -66,3 +67,8 @@ const mapStateToProps = state => {
 }
 
 export const App = withRouter(connect(mapStateToProps)(AppComponent));
+
+AppComponent.propTypes = {
+  user: PropTypes.object,
+  dispatch: PropTypes.func
+}

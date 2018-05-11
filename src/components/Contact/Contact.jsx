@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { Avatar } from '../Avatar/Avatar';
 
@@ -73,3 +74,9 @@ const mapStateToProps = state => {
 }
 
 export const Contact = withRouter(connect(mapStateToProps)(ContactComp));
+
+ContactComp.propTypes = {
+  selectedUsers: PropTypes.array,
+  dispatch: PropTypes.func,
+  user: PropTypes.object
+}

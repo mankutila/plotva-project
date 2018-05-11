@@ -3,12 +3,9 @@ import { Avatar } from '../Avatar/Avatar'
 import api from '../../api';
 
 import './GroupMembers.css';
+import PropTypes from 'prop-types'
 
 export class GroupMembers extends Component {
-  state = {
-    users: []
-  }
-
   componentDidMount() {
     const users = this.props.members.map(async (id) => { return await api.getUser(id); });
     Promise.all(users).then((completed) => {
@@ -16,6 +13,10 @@ export class GroupMembers extends Component {
         users: completed
       })
     });
+  }
+
+  state = {
+    users: []
   }
 
   render() {
@@ -40,4 +41,8 @@ export class GroupMembers extends Component {
       </div>
     )
   }
+}
+
+GroupMembers.propTypes = {
+  members: PropTypes.array
 }

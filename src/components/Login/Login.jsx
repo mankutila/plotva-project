@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 function LoginComponent(props) {
   if (props.user.isFirstLogin) {
@@ -14,3 +15,7 @@ const stateToProps = (state) => ({
 });
 
 export const Login = withRouter(connect(stateToProps)(LoginComponent));
+
+LoginComponent.propTypes = {
+  user: PropTypes.object
+}
